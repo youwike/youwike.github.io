@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"youwike.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"youwike.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="link  难度 思维难度 : 四星 代码难度 : 一星  标签 dpdpdp + 矩阵乘法 + 组合意义 + 计数  题解 考虑组合意义，就是一个有 nnn 个格子，n+1n + 1n+1 个间隔，每个间隔可以放隔板，把格子分成一些部分。每个格子都可以放 1−21-21−2 个球，红球或蓝球，最后要求每个部分都有且仅有一个红球和一个蓝球。其中有一些间隔不能放隔板。求方案数。 对于一种放隔板的方案">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[AGC013E] Placing Squares">
@@ -30,8 +30,8 @@
 <meta property="article:published_time" content="2021-10-20T22:49:55.000Z">
 <meta property="article:modified_time" content="2021-10-20T23:07:02.000Z">
 <meta property="article:author" content="youwike">
-<meta property="article:tag" content="计数">
 <meta property="article:tag" content="dp">
+<meta property="article:tag" content="计数">
 <meta property="article:tag" content="组合意义">
 <meta property="article:tag" content="矩阵乘法">
 <meta name="twitter:card" content="summary">
@@ -281,8 +281,8 @@ f[i][2] = f[i-1][0] + f[i-1][1] + 2f[i-1][2] (放两个球，放另一个球，�
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E8%AE%A1%E6%95%B0/" rel="tag"># 计数</a>
               <a href="/tags/dp/" rel="tag"># dp</a>
+              <a href="/tags/%E8%AE%A1%E6%95%B0/" rel="tag"># 计数</a>
               <a href="/tags/%E7%BB%84%E5%90%88%E6%84%8F%E4%B9%89/" rel="tag"># 组合意义</a>
               <a href="/tags/%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95/" rel="tag"># 矩阵乘法</a>
           </div>
