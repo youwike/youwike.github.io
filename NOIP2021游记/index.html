@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/logo/logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/logo/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/logo/logo.png">
+  <link rel="mask-icon" href="/logo/logo.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"youwike.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="day-(-1) 打了一场模拟赛，又犯了爱刚题的老毛病，直接考崩了，被同届的大佬们吊起来打。希望考场上不要犯错。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIP2021游记">
+<meta property="og:url" content="https://youwike.github.io/NOIP2021%E6%B8%B8%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Youwike&#39;s Blog">
+<meta property="og:description" content="day-(-1) 打了一场模拟赛，又犯了爱刚题的老毛病，直接考崩了，被同届的大佬们吊起来打。希望考场上不要犯错。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/11/21/HdVrIMJQ29cBew7.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/21/wHSTjIZ1xsvehVc.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/11/21/3tRwx1u8pH7vnEF.jpg">
+<meta property="article:published_time" content="2022-01-16T06:27:33.817Z">
+<meta property="article:modified_time" content="2021-11-21T13:27:04.000Z">
+<meta property="article:author" content="youwike">
+<meta property="article:tag" content="游记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/11/21/HdVrIMJQ29cBew7.png">
+
+
+<link rel="canonical" href="https://youwike.github.io/NOIP2021%E6%B8%B8%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://youwike.github.io/NOIP2021%E6%B8%B8%E8%AE%B0/","path":"NOIP2021游记/","title":"NOIP2021游记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>NOIP2021游记 | Youwike's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Youwike's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">41</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#day-1"><span class="nav-number">1.</span> <span class="nav-text"> day-(-1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#day0"><span class="nav-number">2.</span> <span class="nav-text"> day0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#day-1-2"><span class="nav-number">3.</span> <span class="nav-text"> day-1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%BB%E8%80%83%E8%AF%95%E5%95%A6"><span class="nav-number">3.1.</span> <span class="nav-text"> 去考试啦!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E8%80%83%E8%AF%95%E5%95%A6"><span class="nav-number">3.2.</span> <span class="nav-text"> 开始考试啦！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%80%83%E5%AE%8C%E5%95%A6"><span class="nav-number">3.3.</span> <span class="nav-text"> 考完啦!</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">youwike</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://youwike.github.io/NOIP2021%E6%B8%B8%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youwike">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youwike's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NOIP2021游记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-01-16 14:27:33" itemprop="dateCreated datePublished" datetime="2022-01-16T14:27:33+08:00">2022-01-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-11-21 21:27:04" itemprop="dateModified" datetime="2021-11-21T21:27:04+08:00">2021-11-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="day-1"><a class="markdownIt-Anchor" href="#day-1"></a> day-(-1)</h2>
+<p>打了一场模拟赛，又犯了爱刚题的老毛病，直接考崩了，被同届的大佬们吊起来打。希望考场上不要犯错。</p>
+<span id="more"></span>
+<p><img src="https://i.loli.net/2021/11/21/HdVrIMJQ29cBew7.png" alt="QQ截图20211121130743.png" /></p>
+<p>%yyt</p>
+<h2 id="day0"><a class="markdownIt-Anchor" href="#day0"></a> day0</h2>
+<p>考试前一天晚上, 大家一起合影，从北校发来的照片来看， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mn>208</mn><mi>m</mi></mrow><annotation encoding="application/x-tex">i208m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span><span class="mord">2</span><span class="mord">0</span><span class="mord">8</span><span class="mord mathdefault">m</span></span></span></span>​ 受到了虐待。下面是一些照片。</p>
+<p><img src="https://i.loli.net/2021/11/21/wHSTjIZ1xsvehVc.jpg" alt="8`MP_E__PPS9H49PI_9Y_UP.jpg" /></p>
+<p><img src="https://i.loli.net/2021/11/21/3tRwx1u8pH7vnEF.jpg" alt="F3N_6MY_481IE_`P_2QA2.jpg" /></p>
+<p>晚上有点紧张，不知道为什么想出去跑两圈，和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mi>y</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">yyt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault">t</span></span></span></span>​ 跑了两圈后感觉自己老了。</p>
+<p>因为第二天要早起，所以九点就开始准备睡觉了，虽然最后大概十点半才睡着。紧张啊</p>
+<p>希望第二天能有个不错的成绩吧。</p>
+<h2 id="day-1-2"><a class="markdownIt-Anchor" href="#day-1-2"></a> day-1</h2>
+<h3 id="去考试啦"><a class="markdownIt-Anchor" href="#去考试啦"></a> 去考试啦!</h3>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>6</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">6:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">0</span></span></span></span> 多坐大巴去考场，天还很黑，车上很少有人交流，应该是因为困了吧，或者是太紧张了。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>S</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">CSP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span>​ 和去年一样被解神吊打，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mi>O</mi><mi>I</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">NOIP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span>​ 我要反杀。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>8</mn><mo>:</mo><mn>00</mn></mrow><annotation encoding="application/x-tex">8:00</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">0</span></span></span></span>​ 进考场，左边是航航，右边没人。环顾四周，有很多人趴在桌子上睡觉。我有点紧张就大口大口的喝水。深呼吸，深呼吸。</p>
+<h3 id="开始考试啦"><a class="markdownIt-Anchor" href="#开始考试啦"></a> 开始考试啦！</h3>
+<p>吸取上次的教训，先通读题面；</p>
+<p>​                                                                                                                                                                                                                                                                                                                                                                                                                                t1: 这个可以筛一下，复杂度是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>​ 的，但是应该跑不满 。</p>
+<p>t2: 计数！！！，好啊。应该是个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">dp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span></span></span></span>​ ，想了想，发现自己不是很会，先跳吧.</p>
+<p>t3: 好像是个贪心，模拟退火应该也行。但是我不会贪心，模拟退火只写过板子，还是不要冒险写模拟退火了。贪心一会想想。（解神考试前一天做了一道模拟退火）</p>
+<p>t4: 这题面。。。跳过，有时间再写暴力。</p>
+<p>然后花了点时间写 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">t1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mord">1</span></span></span></span> , 一测大样例，第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 个没过。是一个细节没考虑到，因为答案有可能是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi>e</mi><mn>7</mn><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1e7+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord mathdefault">e</span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> , 我只筛到了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi>e</mi><mn>7</mn></mrow><annotation encoding="application/x-tex">1e7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault">e</span><span class="mord">7</span></span></span></span> , 改了一下，过了。不得不说，这次考试 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">t1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mord">1</span></span></span></span>​ 大样例是真良心。</p>
+<p>接着思考 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">t2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mord">2</span></span></span></span> , 没思路， 看了看 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">t3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mord">3</span></span></span></span>​ , 还是没思路。贪心比较难想，我还是决定做 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">t2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mord">2</span></span></span></span>​​ 。</p>
+<p>想了一会没想出来什么，有点崩溃，不会吧，又像 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>S</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">CSP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span> 一样，退役啦，退役啦。</p>
+<p>然后就有思路了，顺着想下去。没问题！开一个四位数组，三维线性，一维状压，由于一些性质，只用压六位。写完加调完, 已经 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span>​​ 点多一点了。按照惯例，该上厕所了。我举手想要上厕所，老师一直没看见我，旁边航航在吃东西，看起来状态还不错。</p>
+<p>终于上完厕所啦！</p>
+<p>解决了两道题，心里踏实多了，看一下 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mn>4</mn></mrow><annotation encoding="application/x-tex">t4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mord">4</span></span></span></span> 吧。读完了题，发现暴搜有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>24</mn><mo>−</mo><mn>4</mn><msup><mn>4</mn><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">24 - 44^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord"><span class="mord">4</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span>​ , 于是开始写暴搜。写了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>5</mn><mi>K</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">5KB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> .然后我 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">t3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mord">3</span></span></span></span> 选择直接随。应该是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>24</mn><mi>p</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">24pt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">2</span><span class="mord">4</span><span class="mord mathdefault">p</span><span class="mord mathdefault">t</span></span></span></span> , 剩下的时间检查了一会儿代码，然后迷惑行为发生了。</p>
+<p>我看了一下 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">t3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mord">3</span></span></span></span>​ , “<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>e</mi><mn>5</mn></mrow><annotation encoding="application/x-tex">2e5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault">e</span><span class="mord">5</span></span></span></span>​ 是不是有点危啊，会不会因为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>e</mi><mi>m</mi><mi>s</mi><mi>e</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">memset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">m</span><span class="mord mathdefault">s</span><span class="mord mathdefault">e</span><span class="mord mathdefault">t</span></span></span></span>​ 直接全 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mi>L</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">TLE</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span>​ , 保险起见还是把数组改小点吧”， 于是亲手送走 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span>​ 分。干得漂亮！</p>
+<h3 id="考完啦"><a class="markdownIt-Anchor" href="#考完啦"></a> 考完啦!</h3>
+<p>民间数据 : <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>100</mn><mo>+</mo><mn>100</mn><mo>+</mo><mn>24</mn><mo>+</mo><mn>24</mn><mo>=</mo><mn>248</mn></mrow><annotation encoding="application/x-tex">100 + 100 + 24 + 24 = 248</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">4</span><span class="mord">8</span></span></span></span></p>
+<p>迷惑行为大赏:</p>
+<p>故意把数组开小 (我)</p>
+<p>电脑出锅丢代码</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">t1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mord">1</span></span></span></span> 打表</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B8%B8%E8%AE%B0/" rel="tag"># 游记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/NOIP2020%E6%B8%B8%E8%AE%B0/" rel="prev" title="NOIP2020游记">
+                  <i class="fa fa-chevron-left"></i> NOIP2020游记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E7%9C%81%E9%80%89%E5%89%8D%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" rel="next" title="省选前学习记录">
+                  省选前学习记录 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">youwike</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha256-9/mhQQwkpU5okPfM5l0v3LnP9xtc6JK8dKW0/WlGaUc=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

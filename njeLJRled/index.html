@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/logo/logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/logo/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/logo/logo.png">
+  <link rel="mask-icon" href="/logo/logo.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"youwike.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="网络流 有一部分复制的这篇 博客 最大流&#x3D;最小割">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络流学习笔记">
+<meta property="og:url" content="https://youwike.github.io/njeLJRled/index.html">
+<meta property="og:site_name" content="Youwike&#39;s Blog">
+<meta property="og:description" content="网络流 有一部分复制的这篇 博客 最大流&#x3D;最小割">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bkimg.cdn.bcebos.com/pic/9213b07eca80653829aba9799cdda144ad348212?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg">
+<meta property="article:published_time" content="2021-10-20T22:54:17.000Z">
+<meta property="article:modified_time" content="2021-10-21T03:19:48.000Z">
+<meta property="article:author" content="youwike">
+<meta property="article:tag" content="网络流">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bkimg.cdn.bcebos.com/pic/9213b07eca80653829aba9799cdda144ad348212?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg">
+
+
+<link rel="canonical" href="https://youwike.github.io/njeLJRled/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://youwike.github.io/njeLJRled/","path":"njeLJRled/","title":"网络流学习笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>网络流学习笔记 | Youwike's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Youwike's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">41</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%B5%81"><span class="nav-number">1.</span> <span class="nav-text"> 网络流</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E9%93%BE%E8%A6%86%E7%9B%96"><span class="nav-number">2.</span> <span class="nav-text"> 最小链覆盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E5%89%B2"><span class="nav-number">3.</span> <span class="nav-text"> 最小割</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%97%E8%B7%AF"><span class="nav-number">3.0.1.</span> <span class="nav-text"> 套路：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E8%B4%9F%E8%BE%B9%E6%9D%83%E7%9A%84%E6%9C%80%E5%B0%8F%E5%89%B2"><span class="nav-number">3.0.2.</span> <span class="nav-text"> 带负边权的最小割：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sol"><span class="nav-number">3.0.2.1.</span> <span class="nav-text"> sol:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E6%9D%83%E9%97%AD%E5%90%88%E5%AD%90%E5%9B%BE"><span class="nav-number">3.0.3.</span> <span class="nav-text"> 最大权闭合子图：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sol-2"><span class="nav-number">3.0.3.1.</span> <span class="nav-text"> sol:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E5%AF%86%E5%BA%A6%E5%AD%90%E5%9B%BE"><span class="nav-number">3.0.4.</span> <span class="nav-text"> 最大密度子图：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sol-3"><span class="nav-number">3.0.4.1.</span> <span class="nav-text"> sol：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E5%9D%87%E5%80%BC%E6%9C%80%E5%B0%8F%E5%89%B2"><span class="nav-number">3.0.5.</span> <span class="nav-text"> 平均值最小割：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sol-4"><span class="nav-number">3.0.5.1.</span> <span class="nav-text"> sol：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rm-dp-%E6%B1%82%E6%9C%80%E5%B0%8F%E5%89%B2%E6%9C%80%E5%A4%A7%E6%B5%81"><span class="nav-number">3.0.6.</span> <span class="nav-text"> dp\rm dpdp 求最小割(最大流)：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BF%85%E7%BB%8F%E8%BE%B9%E5%92%8C%E5%8F%AF%E8%A1%8C%E8%BE%B9"><span class="nav-number">4.</span> <span class="nav-text"> 必经边和可行边</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%85%E7%BB%8F%E8%BE%B9%E5%92%8C%E5%8F%AF%E8%A1%8C%E8%BE%B9%E5%AE%9A%E4%B9%89"><span class="nav-number">4.1.</span> <span class="nav-text"> 必经边和可行边定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%85%E7%BB%8F%E8%BE%B9"><span class="nav-number">4.1.1.</span> <span class="nav-text"> 必经边：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%A1%8C%E8%BE%B9"><span class="nav-number">4.1.2.</span> <span class="nav-text"> 可行边：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D%E5%BF%85%E7%BB%8F%E8%BE%B9%E5%92%8C%E5%8F%AF%E8%A1%8C%E8%BE%B9"><span class="nav-number">4.2.</span> <span class="nav-text"> 求二分图最大匹配必经边和可行边</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E5%87%BA%E5%8F%AF%E8%A1%8C%E8%BE%B9"><span class="nav-number">4.2.1.</span> <span class="nav-text"> 求出可行边</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6"><span class="nav-number">4.2.1.1.</span> <span class="nav-text"> 条件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E5%87%BA%E5%BF%85%E7%BB%8F%E8%BE%B9"><span class="nav-number">4.2.2.</span> <span class="nav-text"> 求出必经边</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6-2"><span class="nav-number">4.2.2.1.</span> <span class="nav-text"> 条件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E6%9C%80%E5%B0%8F%E5%89%B2%E5%BF%85%E7%BB%8F%E8%BE%B9%E5%92%8C%E5%8F%AF%E8%A1%8C%E8%BE%B9"><span class="nav-number">4.3.</span> <span class="nav-text"> 求最小割必经边和可行边</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E5%87%BA%E5%8F%AF%E8%A1%8C%E8%BE%B9-2"><span class="nav-number">4.3.1.</span> <span class="nav-text"> 求出可行边</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6-3"><span class="nav-number">4.3.1.1.</span> <span class="nav-text"> 条件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E6%B3%95"><span class="nav-number">4.3.2.</span> <span class="nav-text"> 求法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E5%87%BA%E5%BF%85%E7%BB%8F%E8%BE%B9-2"><span class="nav-number">4.3.3.</span> <span class="nav-text"> 求出必经边</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6-4"><span class="nav-number">4.3.3.1.</span> <span class="nav-text"> 条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%82%E6%B3%95-2"><span class="nav-number">4.3.3.2.</span> <span class="nav-text"> 求法</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%B9%E7%94%A8%E6%B5%81"><span class="nav-number">5.</span> <span class="nav-text"> 费用流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%97%E8%B7%AF-2"><span class="nav-number">5.0.1.</span> <span class="nav-text"> 套路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8A%E4%B8%8B%E7%95%8C%E6%B5%81%E4%B8%8A%E4%B8%8B%E7%95%8C%E7%BD%91%E7%BB%9C%E6%B5%81-oi-wiki-oi-wikiorg"><span class="nav-number">6.</span> <span class="nav-text"> [上下界流](上下界网络流 - OI Wiki (oi-wiki.org))</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E5%8F%AF%E8%A1%8C%E6%B5%81"><span class="nav-number">6.1.</span> <span class="nav-text"> 无源汇上下界可行流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E5%8F%AF%E8%A1%8C%E6%B5%81"><span class="nav-number">6.2.</span> <span class="nav-text"> 有源汇上下界可行流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E6%9C%80%E5%B0%8F%E6%B5%81"><span class="nav-number">6.3.</span> <span class="nav-text"> 有源汇上下界最小流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E6%9C%80%E5%A4%A7%E6%B5%81"><span class="nav-number">6.4.</span> <span class="nav-text"> 有源汇上下界最大流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E6%9C%80%E5%B0%8F%E8%B4%B9%E7%94%A8%E6%B5%81"><span class="nav-number">6.5.</span> <span class="nav-text"> 有源汇上下界最小费用流</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E5%81%B6%E5%9B%BE"><span class="nav-number">7.</span> <span class="nav-text"> 对偶图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">7.0.1.</span> <span class="nav-text"> 例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#code"><span class="nav-number">7.0.1.1.</span> <span class="nav-text"> Code:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%97%E8%B7%AF%E6%80%BB%E7%BB%93"><span class="nav-number">7.1.</span> <span class="nav-text"> 套路总结</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">youwike</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://youwike.github.io/njeLJRled/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="youwike">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Youwike's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络流学习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-10-21 06:54:17 / 修改时间：11:19:48" itemprop="dateCreated datePublished" datetime="2021-10-21T06:54:17+08:00">2021-10-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="网络流"><a class="markdownIt-Anchor" href="#网络流"></a> 网络流</h1>
+<p>有一部分复制的这篇 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/dugudashen/p/6228304.html">博客</a></p>
+<p><code>最大流=最小割</code></p>
+<span id="more"></span>
+<h1 id="最小链覆盖"><a class="markdownIt-Anchor" href="#最小链覆盖"></a> 最小链覆盖</h1>
+<p><code>dag最小链覆盖 = n - 拆点跑二分图最大匹配</code><br />
+<code>最小链覆盖 = 最长反链</code><br />
+<code>最小反链覆盖 = 最长链</code></p>
+<h1 id="最小割"><a class="markdownIt-Anchor" href="#最小割"></a> 最小割</h1>
+<h3 id="套路"><a class="markdownIt-Anchor" href="#套路"></a> 套路：</h3>
+<p>有一些限制，求满足限制之一的最优解。多选一的题可以考虑最小割</p>
+<h3 id="带负边权的最小割"><a class="markdownIt-Anchor" href="#带负边权的最小割"></a> 带负边权的最小割：</h3>
+<p>顾名思义就行。</p>
+<h4 id="sol"><a class="markdownIt-Anchor" href="#sol"></a> sol:</h4>
+<p>先把负边都割掉，然后跑最小割。</p>
+<h3 id="最大权闭合子图"><a class="markdownIt-Anchor" href="#最大权闭合子图"></a> 最大权闭合子图：</h3>
+<p>一个有向图中，每个点有点权 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">w_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>（可负）</p>
+<p>现在需要找到一个子图，满足：</p>
+<ul>
+<li>对于所有边 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(u,v)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">)</span></span></span></span> ，点 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span> 在子图中则 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span> 必在子图中</li>
+<li>子图的点权和最大</li>
+</ul>
+<p>这个子图就是最大权闭合子图</p>
+<h4 id="sol-2"><a class="markdownIt-Anchor" href="#sol-2"></a> sol:</h4>
+<p>正点权向源点连正边，负点权向汇点连绝对值边，有边相连的点之间连无穷边</p>
+<p><code>最大权闭合子图=正点权和-最小割</code></p>
+<p>新图的一组割，代表原图的一个闭合子图，正点被割代表不选，负点被割代表选</p>
+<h3 id="最大密度子图"><a class="markdownIt-Anchor" href="#最大密度子图"></a> 最大密度子图：</h3>
+<p>给定一个无向图，要求它的一个子图，使 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mi mathvariant="normal">∣</mi><mi>E</mi><mi mathvariant="normal">∣</mi></mrow><mrow><mi mathvariant="normal">∣</mi><mi>V</mi><mi mathvariant="normal">∣</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{|E|}{|V|}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∣</span><span class="mord mathdefault mtight" style="margin-right:0.22222em;">V</span><span class="mord mtight">∣</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∣</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">E</span><span class="mord mtight">∣</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 最大 。</p>
+<h4 id="sol-3"><a class="markdownIt-Anchor" href="#sol-3"></a> sol：</h4>
+<p>二分答案，求 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∣</mi><mi>E</mi><mi mathvariant="normal">∣</mi><mo>−</mo><mi mathvariant="normal">∣</mi><mi>V</mi><mi mathvariant="normal">∣</mi><mi>x</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">|E| - |V|x \geq 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord">∣</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>, 边的收益为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">+</span><span class="mord">1</span></span></span></span>, 点的收益为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">-x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord mathdefault">x</span></span></span></span>. 跑<em>最大权闭合子图</em></p>
+<h3 id="平均值最小割"><a class="markdownIt-Anchor" href="#平均值最小割"></a> 平均值最小割：</h3>
+<p>给定一个图，源点，汇点，求一个割，使边权平均值最大。</p>
+<h4 id="sol-4"><a class="markdownIt-Anchor" href="#sol-4"></a> sol：</h4>
+<p>二分平均值， 得到: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi><mi>a</mi><mi>l</mi><mo>−</mo><mi>x</mi><mi mathvariant="normal">∣</mi><mi>E</mi><mi mathvariant="normal">∣</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">val - x|E| \geq 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">x</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> , 给每条边的权值减去 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> ，再跑最大流</p>
+<h3 id="rm-dp-求最小割最大流"><a class="markdownIt-Anchor" href="#rm-dp-求最小割最大流"></a> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">p</mi></mrow><annotation encoding="application/x-tex">\rm dp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">d</span><span class="mord mathrm">p</span></span></span></span></span> 求最小割(最大流)：</h3>
+<p><code>最大流=最小割</code></p>
+<p>然后 $ \rm dp$ 求最小割就可以求出最小割和最大流了。</p>
+<p>一般比较规则的图可以考虑 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">p</mi></mrow><annotation encoding="application/x-tex">\rm dp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">d</span><span class="mord mathrm">p</span></span></span></span></span> 。</p>
+<p>一般设 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span></span> 表示考虑到了前 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 个点。</p>
+<p>[例题](<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF724E">CF724E Goods transportation - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</a>)</p>
+<h1 id="必经边和可行边"><a class="markdownIt-Anchor" href="#必经边和可行边"></a> 必经边和可行边</h1>
+<h2 id="必经边和可行边定义"><a class="markdownIt-Anchor" href="#必经边和可行边定义"></a> 必经边和可行边定义</h2>
+<h3 id="必经边"><a class="markdownIt-Anchor" href="#必经边"></a> 必经边：</h3>
+<p>所有情况下选出的边的交</p>
+<h3 id="可行边"><a class="markdownIt-Anchor" href="#可行边"></a> 可行边：</h3>
+<p>所有情况下选出的边的并。</p>
+<h2 id="求二分图最大匹配必经边和可行边"><a class="markdownIt-Anchor" href="#求二分图最大匹配必经边和可行边"></a> 求二分图最大匹配必经边和可行边</h2>
+<h3 id="求出可行边"><a class="markdownIt-Anchor" href="#求出可行边"></a> 求出可行边</h3>
+<h4 id="条件"><a class="markdownIt-Anchor" href="#条件"></a> 条件</h4>
+<p>满流</p>
+<p>对于二分图上的一条偶链（边数为偶数的链）或者一个偶环， 这个偶链或偶环上的边是可行边，因为改变偶链或偶环上被选中的边，匹配数不变。</p>
+<p>在残量网络中跑 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>c</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">scc</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">c</span><span class="mord mathdefault">c</span></span></span></span> , 两端点都在同一 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>c</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">scc</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">c</span><span class="mord mathdefault">c</span></span></span></span> 中的边是可行边。</p>
+<p>考虑残量网络，一条边被选，在残量网络中会有一条反向边，对于一个偶环，显然在把边的方向取反后会变成一个环。对于一条偶链，把源点考虑进去，他的两个端点，一定有一个被匹配，一个不被匹配，所以对于这条路径，源点连向一个端点，另一个端点连向源点，构成了一个环。</p>
+<h3 id="求出必经边"><a class="markdownIt-Anchor" href="#求出必经边"></a> 求出必经边</h3>
+<h4 id="条件-2"><a class="markdownIt-Anchor" href="#条件-2"></a> 条件</h4>
+<ol>
+<li>满流</li>
+<li>残余网络中两端点在不同 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>c</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">scc</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">c</span><span class="mord mathdefault">c</span></span></span></span> 中。</li>
+</ol>
+<p>考虑可行但不必经的边 ：</p>
+<p>对于二分图上的一条偶链（边数为偶数的链）或者一个偶环， 这个偶链或偶环上的边是可行但不必经边，因为改变偶链或偶环上被选中的边，匹配数不变。</p>
+<p>在残量网络中跑 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>c</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">scc</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">c</span><span class="mord mathdefault">c</span></span></span></span> , 两端点都在同一 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>c</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">scc</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">c</span><span class="mord mathdefault">c</span></span></span></span> 中的边是可行但不必经边。</p>
+<p>考虑残量网络，一条边被选，在残量网络中会有一条反向边，对于一个偶环，显然在把边的方向取反后会变成一个环。对于一条偶链，把源点考虑进去，他的两个端点，一定有一个被匹配，一个不被匹配，所以对于这条路径，源点连向一个端点，另一个端点连向源点，构成了一个环。</p>
+<p>在残量网络中跑 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>c</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">scc</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">c</span><span class="mord mathdefault">c</span></span></span></span> , 两端点在不同 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>c</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">scc</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">c</span><span class="mord mathdefault">c</span></span></span></span> 中的边是必经边。</p>
+<h2 id="求最小割必经边和可行边"><a class="markdownIt-Anchor" href="#求最小割必经边和可行边"></a> 求最小割必经边和可行边</h2>
+<h3 id="求出可行边-2"><a class="markdownIt-Anchor" href="#求出可行边-2"></a> 求出可行边</h3>
+<h4 id="条件-3"><a class="markdownIt-Anchor" href="#条件-3"></a> 条件</h4>
+<p>1.满流。</p>
+<p>2.在残余网络中找不到入点到出点的路径。</p>
+<p>若不满流显然可以找到另一条更小的满流的限制流量的边。</p>
+<p>若满流但在残余网络中能找到入点到出点的路径，那么需要同时割掉这条边和残余网络中路径上某条边才能实现“割”，而这两条边上的流量和一定等于其他某条或某几条满流的边的流量和，否则可以继续增广，又因为位于残余网络上的那条边一定不满流，所以这种割法不是最小割。</p>
+<h3 id="求法"><a class="markdownIt-Anchor" href="#求法"></a> 求法：</h3>
+<p>在残余网络中 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mi>a</mi><mi>r</mi><mi>j</mi><mi>a</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">tarjan</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span></span></span></span> 求 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>C</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">SCC</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span>，入出两点在同一 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>C</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">SCC</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span> 中说明残余网络中存在入点到出点的路径。</p>
+<p>由于该边满流，它的反向边一定存在于残余网络中，反向边与其他入点到出点的路径会构成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>C</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">SCC</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span>。</p>
+<h3 id="求出必经边-2"><a class="markdownIt-Anchor" href="#求出必经边-2"></a> 求出必经边</h3>
+<h4 id="条件-4"><a class="markdownIt-Anchor" href="#条件-4"></a> 条件</h4>
+<p>1.满流。</p>
+<p>2.残余网络中源点能到入点，出点能到汇点。</p>
+<p>若不满流显然可以找到另一条更小的满流的限制流量的边。</p>
+<p>若满流但在残余网络中源点不能到入点或出点不能到汇点，那么在每条单独路径上一定都存在一条满足最小割可行边的边（容量为0阻断路径且没有其他路径），割掉这条可行边是等价的。</p>
+<p>必须边的另一种理解是扩大容量后能增大最大流的边。</p>
+<h4 id="求法-2"><a class="markdownIt-Anchor" href="#求法-2"></a> 求法</h4>
+<p>在残余网络上从源点开始 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>f</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">dfs</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">s</span></span></span></span>，从汇点开始反向 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>f</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">dfs</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">s</span></span></span></span>，标记到达的点，然后枚举满流边判断即可。</p>
+<p>若求过可行边，已经有了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>C</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">SCC</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span>，直接判断入点是否与源点在同一 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>C</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">SCC</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span> 中且出点是否与汇点在同一 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>C</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">SCC</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span> 中即可。</p>
+<p>考虑为什么两种算法是等价的，由于源点到入点一定有流，所以一定存在入点到源点的有流路径，等价得证。</p>
+<h1 id="费用流"><a class="markdownIt-Anchor" href="#费用流"></a> 费用流</h1>
+<p>费用流每增广一次，增广路至少+1。所以复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>m</mi><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nmf)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault">m</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mclose">)</span></span></span></span> ， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 表示流量。</p>
+<h3 id="套路-2"><a class="markdownIt-Anchor" href="#套路-2"></a> 套路</h3>
+<p>求<strong>最小费用流</strong>，对于一些贡献不是常数的情况 （如选 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 个的费用为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>i</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">i^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>），如果<strong>费用递增</strong>，那么可以直接把每个费用拆成多个容量为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, 费用不同的边 (如 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi>i</mi></mrow><annotation encoding="application/x-tex">1, 2, 3, ... i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord mathdefault">i</span></span></span></span>)。证明如下:</p>
+<p>对于一种方案的贡献，在跑最小费用流时，一定先考虑费用更小的边，而因为费用随次数递增，所以取出的边满足是连续的一段。</p>
+<h1 id="上下界流上下界网络流-oi-wiki-oi-wikiorg"><a class="markdownIt-Anchor" href="#上下界流上下界网络流-oi-wiki-oi-wikiorg"></a> [上下界流](<a target="_blank" rel="noopener" href="https://oi-wiki.org/graph/flow/bound/">上下界网络流 - OI Wiki (oi-wiki.org)</a>)</h1>
+<h2 id="无源汇上下界可行流"><a class="markdownIt-Anchor" href="#无源汇上下界可行流"></a> 无源汇上下界可行流</h2>
+<p>先强制让每条边流出流量为下界的流，这样有一些点会出现流量不守恒的情况，考虑解决这个问题，把每条边的容量改为上界减下界。设一个原点 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> , 对于入流量大于出流量的点，从原点连一条容量为入流量减出流量的边,对于出流量大于入流量的点，向汇点连一条容量为出流量减入流量的边。跑最大流。</p>
+<h2 id="有源汇上下界可行流"><a class="markdownIt-Anchor" href="#有源汇上下界可行流"></a> 有源汇上下界可行流</h2>
+<p>从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span> 向 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 连一条容量为无穷大的边，跑无源汇上下界可行流。 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>−</mo><mo>&gt;</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">T -&gt; S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">−</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 的流量就是可行流的流量。</p>
+<h2 id="有源汇上下界最小流"><a class="markdownIt-Anchor" href="#有源汇上下界最小流"></a> 有源汇上下界最小流</h2>
+<p>方法1 ：先不考虑 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>−</mo><mo>&gt;</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">T-&gt;S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">−</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 的边，跑一遍可行流，加上 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>−</mo><mo>&gt;</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">T-&gt;S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">−</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 再跑一遍。</p>
+<p>方法2 ：感性理解，先跑一遍可行流，再从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span> 向 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 跑最大流。</p>
+<h2 id="有源汇上下界最大流"><a class="markdownIt-Anchor" href="#有源汇上下界最大流"></a> 有源汇上下界最大流</h2>
+<p>感性理解，先跑一遍可行流，再从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 向 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span> 跑最大流。</p>
+<h2 id="有源汇上下界最小费用流"><a class="markdownIt-Anchor" href="#有源汇上下界最小费用流"></a> 有源汇上下界最小费用流</h2>
+<h1 id="对偶图"><a class="markdownIt-Anchor" href="#对偶图"></a> 对偶图</h1>
+<p>定义：对于一张平面图（边和边的交点都是边的端点），点和边把整张图分成了一些平面，那么以平面作为点，以平面之间的公共边作为边构成的图就是原图的对偶图。</p>
+<p>如：</p>
+<p><img src="https://bkimg.cdn.bcebos.com/pic/9213b07eca80653829aba9799cdda144ad348212?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg" alt="img" /></p>
+<p>性质：</p>
+<p><code>原图的一个割对应对偶图的一个环(不规定源点和汇点)</code></p>
+<p><code>最大流=最小割=对偶图的最短路(规定源点和汇点，连接源点和汇点后仍是平面图)</code></p>
+<h3 id="例题"><a class="markdownIt-Anchor" href="#例题"></a> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4001">例题</a></h3>
+<h4 id="code"><a class="markdownIt-Anchor" href="#code"></a> Code:</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> inf 0x3f3f3f3f</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">2e6</span> + <span class="number">10</span>, M = <span class="number">12e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> head[N], nxt[M], len[M], to[M], dep[N], n, m, tot = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> S, T;</span><br><span class="line">priority_queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt; q;</span><br><span class="line"><span class="keyword">int</span> dis[N], vis[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  nxt[++tot] = head[x];</span><br><span class="line">  head[x] = tot;</span><br><span class="line">  to[tot] = y;</span><br><span class="line">  len[tot] = z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">id</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> op)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> op * ((n - <span class="number">1</span>) * (m - <span class="number">1</span>)) + (x - <span class="number">1</span>) * (m - <span class="number">1</span>) + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dij</span><span class="params">(<span class="keyword">int</span> S, <span class="keyword">int</span> T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">memset</span>(dis, <span class="number">0x3f</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(dis));</span><br><span class="line">  q.<span class="built_in">push</span>(<span class="built_in">make_pair</span>(<span class="number">0</span>, S));</span><br><span class="line">  dis[S] = <span class="number">0</span>;</span><br><span class="line">  vis[S] = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span> (q.<span class="built_in">size</span>())</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">int</span> u = q.<span class="built_in">top</span>().second;</span><br><span class="line">    q.<span class="built_in">pop</span>();</span><br><span class="line">    vis[u] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; i; i = nxt[i])</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">int</span> v = to[i];</span><br><span class="line">      <span class="keyword">if</span> (dis[u] + len[i] &lt; dis[v])</span><br><span class="line">      &#123;</span><br><span class="line">        dis[v] = dis[u] + len[i];</span><br><span class="line">        <span class="keyword">if</span> (!vis[v]) q.<span class="built_in">push</span>(<span class="built_in">make_pair</span>(-dis[v], v)), vis[v] = <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> dis[T];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">  T = <span class="number">2</span> * n * m + <span class="number">10</span>, S = <span class="number">2</span> * n * m + <span class="number">20</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; m; ++j)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">int</span> x;</span><br><span class="line">      <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x);</span><br><span class="line">      <span class="keyword">if</span> (i == <span class="number">1</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">add</span>(T, <span class="built_in">id</span>(i, j, <span class="number">1</span>), x);</span><br><span class="line">        <span class="built_in">add</span>(<span class="built_in">id</span>(i, j, <span class="number">1</span>), T, x);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (i == n)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">add</span>(<span class="built_in">id</span>(i - <span class="number">1</span>, j, <span class="number">0</span>), S, x);</span><br><span class="line">        <span class="built_in">add</span>(S, <span class="built_in">id</span>(i - <span class="number">1</span>, j, <span class="number">0</span>), x);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="built_in">add</span>(<span class="built_in">id</span>(i - <span class="number">1</span>, j, <span class="number">0</span>), <span class="built_in">id</span>(i, j, <span class="number">1</span>), x), <span class="built_in">add</span>(<span class="built_in">id</span>(i, j, <span class="number">1</span>), <span class="built_in">id</span>(i - <span class="number">1</span>, j, <span class="number">0</span>), x);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; ++j)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">int</span> x;</span><br><span class="line">      <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x);</span><br><span class="line">      <span class="keyword">if</span> (j == <span class="number">1</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">add</span>(S, <span class="built_in">id</span>(i, j, <span class="number">0</span>), x);</span><br><span class="line">        <span class="built_in">add</span>(<span class="built_in">id</span>(i, j, <span class="number">0</span>), S, x);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (j == m)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">add</span>(<span class="built_in">id</span>(i, j - <span class="number">1</span>, <span class="number">1</span>), T, x);</span><br><span class="line">        <span class="built_in">add</span>(T, <span class="built_in">id</span>(i, j - <span class="number">1</span>, <span class="number">1</span>), x);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="built_in">add</span>(<span class="built_in">id</span>(i, j - <span class="number">1</span>, <span class="number">1</span>), <span class="built_in">id</span>(i, j, <span class="number">0</span>), x), <span class="built_in">add</span>(<span class="built_in">id</span>(i, j, <span class="number">0</span>), <span class="built_in">id</span>(i, j - <span class="number">1</span>, <span class="number">1</span>), x);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; m; ++j)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">int</span> x;</span><br><span class="line">      <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x);</span><br><span class="line">      <span class="built_in">add</span>(<span class="built_in">id</span>(i, j, <span class="number">1</span>), <span class="built_in">id</span>(i, j, <span class="number">0</span>), x);</span><br><span class="line">      <span class="built_in">add</span>(<span class="built_in">id</span>(i, j, <span class="number">0</span>), <span class="built_in">id</span>(i, j, <span class="number">1</span>), x);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  cout &lt;&lt; <span class="built_in">dij</span>(S, T);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>洛谷上 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>i</mi><mi>j</mi></mrow><annotation encoding="application/x-tex">dij</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 还没 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>i</mi><mi>n</mi><mi>i</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">dinic</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span></span></span></span> 快</p>
+<h2 id="套路总结"><a class="markdownIt-Anchor" href="#套路总结"></a> 套路总结</h2>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/" rel="tag"># 网络流</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E6%AF%94%E8%B5%9B%E6%98%93%E9%94%99%E6%80%BB%E7%BB%93/" rel="prev" title="比赛易错总结">
+                  <i class="fa fa-chevron-left"></i> 比赛易错总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/NiK21jhNm/" rel="next" title="递推式转和式">
+                  递推式转和式 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">youwike</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha256-9/mhQQwkpU5okPfM5l0v3LnP9xtc6JK8dKW0/WlGaUc=" crossorigin="anonymous">
+
+
+
+</body>
+</html>
